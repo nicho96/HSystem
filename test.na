@@ -1,0 +1,27 @@
+.stack 256
+
+MOV $1 #224
+MOV $2 #115
+
+:draw_line
+PUSHB $2
+PUSHI $1
+PUSHI $0
+MOV $0 $1
+CALL :draw_point
+UVR
+POPI $0
+POPI $1
+POPB $2
+SUB $1 #1
+JGT $1 :draw_line
+JMP :end
+
+:draw_point
+MUL $0 #256 
+ADD $0 $1
+WVR $2 $0
+RET
+
+:end
+

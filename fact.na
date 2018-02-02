@@ -1,0 +1,28 @@
+.stack 40
+
+MOV $0 #7
+CALL :fact
+PUSHI $0
+MOV $0 #5
+CALL :fact
+POPI $1
+DIV $1 $0
+JMP :end
+
+; START FACTORIAL SUBROUTINE
+:fact
+JE $0 :fact_base
+PUSHI $0
+SUB $0 #1
+CALL :fact
+
+POPI $1
+MUL $0 $1
+RET
+
+:fact_base
+MOV $0 #1
+RET
+; END FACTORIAL SUBROUTINE
+
+:end
